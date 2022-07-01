@@ -1,7 +1,7 @@
 ## simple_movie_qa_with_KG
 
-使用python实现一个简单的基于知识图谱的电影问答系统
-
+使用python实现一个简单的基于知识图谱的电影问答系统  
+源项目地址:https://github.com/IrvingBei/simple_movie_qa_with_KG
 
 ### Usage
 环境：python3.6  
