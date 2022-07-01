@@ -1,10 +1,3 @@
-#-*- coding: UTF-8 -*-
-# @Time    : 2019/4/14 13:21
-# @Author  : xiongzongyang
-# @Site    : 
-# @File    : question_template.py
-# @Software: PyCharm
-
 '''
 
 

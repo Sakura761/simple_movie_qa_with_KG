@@ -1,15 +1,8 @@
-#-*- coding: UTF-8 -*-
-# @Time    : 2019/4/12 19:53
-# @Author  : xiongzongyang
-# @Site    : 
-# @File    : query.py
-# @Software: PyCharm
-
 from py2neo import Graph,Node,Relationship,NodeMatcher
 
 class Query():
     def __init__(self):
-        self.graph=Graph("http://localhost:7474", username="neo4j",password="123456")
+        self.graph=Graph("http://localhost:7474", user="neo4j",password="123456")
 
     # 问题类型0，查询电影得分
     def run(self,cql):

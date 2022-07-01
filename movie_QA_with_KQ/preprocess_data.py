@@ -1,16 +1,8 @@
-#-*- coding: UTF-8 -*-
-# @Time    : 2019/4/12 15:04
-# @Author  : xiongzongyang
-# @Site    : 
-# @File    : preprocess_data.py
-# @Software: PyCharm
-
 '''
 接收原始问题
 对原始问题进行分词、词性标注等处理
 对问题进行抽象
 '''
-
 import jieba.posseg
 import re
 from question_classification import Question_classify
@@ -26,27 +18,21 @@ from question_template import QuestionTemplate
 # with(open("./data/userdict2.txt","w",encoding="utf-8")) as fw:
 #     for one in result:
 #         fw.write(one)
-
-import sys, os
-
-# Disable
-def blockPrint():
-    sys.stdout = open(os.devnull, 'w')
-
-# Restore
-def enablePrint():
-    sys.stdout = sys.__stdout__
-# blockPrint()
-
-# enablePrint()
-
-
-
 class Question():
     def __init__(self):
         # 初始化相关设置：读取词汇表，训练分类器，连接数据库
         self.init_config()
-
+    '''
+    读取问题模板
+    '''
+    '''
+    preprocess_data.py函数功能介绍：
+    init_config：读取问题模板
+    question_process:对外的接口，通过调用这个函数获取答案
+    question_posseg：对输入的问题进行词性标注
+    get_question_template:将进行词性标注后的输入问题通过分类器得到问题的模板
+    query_template:根据问题模板的具体类容，构造cql语句，并查询
+    '''
     def init_config(self):
         # # 读取词汇表
         # with(open("./data/vocabulary.txt","r",encoding="utf-8")) as fr:
@@ -86,7 +72,9 @@ class Question():
         # 查询图数据库,得到答案
         self.answer=self.query_template()
         return(self.answer)
-
+    '''
+    函数功能：对输入的问题进行词性标注
+    '''
     def question_posseg(self):
         jieba.load_userdict("./data/userdict3.txt")
         clean_question = re.sub("[\s+\.\!\/_,$%^*(+\"\')]+|[+——()?【】“”！，。？、~@#￥%……&*（）]+","",self.raw_question)
@@ -106,7 +94,9 @@ class Question():
         self.question_flag = question_flag
         print(result)
         return result
-
+    '''
+    函数功能：将进行词性标注后的输入问题通过分类器得到问题的模板
+    '''
     def get_question_template(self):
         # 抽象问题
         for item in ['nr','nm','ng']:
@@ -125,7 +115,9 @@ class Question():
         question_template_id_str=str(question_template_num)+"\t"+question_template
         return question_template_id_str
 
-
+    '''
+    函数功能：根据问题模板的具体类容，构造cql语句，并查询
+    '''
     # 根据问题模板的具体类容，构造cql语句，并查询
     def query_template(self):
         # 调用问题模板类中的获取答案的方法

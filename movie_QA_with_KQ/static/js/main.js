@@ -1,4 +1,4 @@
-// 将问题发送到后台，并接收相应
+// 将问题发送到后台，并接收相应答案
 function sendtoserver(text)
 {
   var xmlhttp;
@@ -27,24 +27,6 @@ function sendtoserver(text)
   xmlhttp.send("id=bei&q="+$.trim(text));
 }
 
-$('#info').keyup(function(e) {
-    var key = e.which;
-    if ($('#info').val() == '') {
-        $('#send').css({
-            'background-image': 'url(/static/img/btn32.png)'
-        });
-    } else {
-        $('#send').css({
-            'background-image': 'url(/static/img/btn3.gif)'
-        });
-    }
-    if (key == 13) {
-        $('#send').trigger("click");
-        $('#send').css({
-            'background-image': 'url(/static/img/btn3.png)'
-        });
-    }
-});
 var pre_time;
 $('#send').click(function() {
     // 获取当前日期，并添加到对话框中
@@ -60,14 +42,11 @@ $('#send').click(function() {
     if ($.trim(text)=="")
     {
         $('#send').css(setDisabled);
-        // show("聊点啥吧！");
+        show('请输入问题');
     }
     else {
         // 清空发送框
         $('#info').val('');
-        $('#send').css({
-            'background-image': 'url(/static/img/btn3.png)'
-        });
         // 把发送内容添加到聊天框
         var p = "<div class='me'><div class='qipao'></div><div class='item'>" + text + '</div></div>';
         $('#chat').append(p);
@@ -92,31 +71,3 @@ function diff_time(time) {
     } else
         return true;
 }
-//
-// var EventUtil = {
-//   addHandler:function(element,type,handler){
-//     if(element.addEventListener){
-//       element.addEventListener(type,handler,false);
-//     }else if(element.attachEvent){
-//       element.attachEvent("on"+type,handler);
-//     }else{
-//       element["on"+type] = handler;
-//     }
-//   },
-//   removeHander:function(element,type,handler){
-//     if(element.removeEventListener){
-//       element.addEventListener(type,handler,false);
-//     }else if(element.detachEvent){
-//       element.detachEvent("on"+type,handler);
-//     }else{
-//       element["on"+type] = null;
-//     }
-//   }
-// }
-// // EventUtil.addHandler(window,'resize',change_height);
-// function change_height(){
-//   $('#chat').css({height:window.innerHeight-$('#chat').next().height()});
-//   $('#info').css({width:$('#chat').width()-$('#send').width()-30});
-//   //console.log($('#chat').next().css(width));
-// }
-// change_height();

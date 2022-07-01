@@ -1,10 +1,3 @@
-#-*- coding: UTF-8 -*-
-# @Time    : 2019/4/12 15:40
-# @Author  : xiongzongyang
-# @Site    : 
-# @File    : question_classification.py
-# @Software: PyCharm
-
 import pandas as pd
 from pandas import Series, DataFrame
 from sklearn.naive_bayes import MultinomialNB
