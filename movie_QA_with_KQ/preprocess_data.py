@@ -8,16 +8,16 @@ import re
 from question_classification import Question_classify
 from question_template import QuestionTemplate
 # # 将自定义字典写入文件
-# result = []
-# with(open("./data/userdict.txt","r",encoding="utf-8")) as fr:
-#     vocablist=fr.readlines()
-#     for one in vocablist:
-#         if str(one).strip()!="":
-#             temp=str(one).strip()+" "+str(15)+" nr"+"\n"
-#             result.append(temp)
-# with(open("./data/userdict2.txt","w",encoding="utf-8")) as fw:
-#     for one in result:
-#         fw.write(one)
+result = []
+with(open("./data/userdict.txt","r",encoding="utf-8")) as fr:
+    vocablist=fr.readlines()
+    for one in vocablist:
+        if str(one).strip()!="":
+            temp=str(one).strip()+" "+str(15)+" nr"+"\n"
+            result.append(temp)
+with(open("./data/userdict2.txt","w",encoding="utf-8")) as fw:
+    for one in result:
+        fw.write(one)
 class Question():
     def __init__(self):
         # 初始化相关设置：读取词汇表，训练分类器，连接数据库

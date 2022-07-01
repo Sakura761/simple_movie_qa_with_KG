@@ -3,9 +3,9 @@
 使用python实现一个简单的基于知识图谱的电影问答系统
 
 
-
 ### Usage
 环境：python3.6  
+将data文件中的import.zip中的csv导入neo4j数据库  
 First:  
     pip install  requirements.txt
 Then:
