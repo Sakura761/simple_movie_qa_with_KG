@@ -49,6 +49,8 @@ class Question_classify():
                         # 将这一行加入结果集
                         train_x.append(" ".join(word_list))
                         train_y.append(label_num)
+        print(train_x)
+        print(train_y)
         return train_x,train_y
 
     # 训练并测试模型-NB
@@ -71,4 +73,4 @@ class Question_classify():
 
 if __name__ == '__main__':
     qc=Question_classify()
-    qc.predict("张学友的个人信息")
+    print(qc.predict("张学友的个人信息"))

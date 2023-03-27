@@ -9,19 +9,20 @@ from question_classification import Question_classify
 from question_template import QuestionTemplate
 # # 将自定义字典写入文件
 result = []
-with(open("./data/userdict.txt","r",encoding="utf-8")) as fr:
-    vocablist=fr.readlines()
-    for one in vocablist:
-        if str(one).strip()!="":
-            temp=str(one).strip()+" "+str(15)+" nr"+"\n"
-            result.append(temp)
-with(open("./data/userdict2.txt","w",encoding="utf-8")) as fw:
-    for one in result:
-        fw.write(one)
+# with(open("./data/userdict.txt","r",encoding="utf-8")) as fr:
+#     vocablist=fr.readlines()
+#     for one in vocablist:
+#         if str(one).strip()!="":
+#             temp=str(one).strip()+" "+str(15)+" nr"+"\n"
+#             result.append(temp)
+# with(open("./data/userdict2.txt","w",encoding="utf-8")) as fw:
+#     for one in result:
+#         fw.write(one)
 class Question():
     def __init__(self):
         # 初始化相关设置：读取词汇表，训练分类器，连接数据库
-        self.init_config()
+        # self.init_config()
+        pass
     '''
     读取问题模板
     '''
@@ -78,6 +79,7 @@ class Question():
     def question_posseg(self):
         jieba.load_userdict("./data/userdict3.txt")
         clean_question = re.sub("[\s+\.\!\/_,$%^*(+\"\')]+|[+——()?【】“”！，。？、~@#￥%……&*（）]+","",self.raw_question)
+        print(clean_question)
         self.clean_question=clean_question
         question_seged=jieba.posseg.cut(str(clean_question))
         result=[]
@@ -127,6 +129,11 @@ class Question():
             answer="我也还不知道！"
         # answer = self.questiontemplate.get_question_answer(self.pos_quesiton, self.question_template_id_str)
         return answer
+if __name__ == "__main__":
+    question = Question()
+    question.raw_question = "章子怡演过多少部电影"
+    question.pos_quesiton = question.question_posseg()
+    question.get_question_template()
 
 
 
